@@ -64,9 +64,8 @@ def school_details(new_url):
         '\t', '')
     new_affiliation_period_to = '\"' + check_updated_affiliation_period_to + '\"'
 
-
     # updating STD code by pre-pending 0 as prefix
-    
+
     # format of phone no and telephone number being followed has 0 as a prefix for both phone no.(+91 is not being used to maintain uniformaty) and telephone no.
     # e.g. 070324xxxxx (phone nummber) and 011270xxxxx (Telephone number).
 
@@ -85,7 +84,8 @@ def school_details(new_url):
         if std_code[0] != "0":  # checking if it's  not an 3-digit std code with prefix 0
             std_code = str(0) + str(std_code)
     elif std_code[0] == "0" and len(std_code) == 5:  # checking for std code
-        pass
+        # pass
+        print "correct std"
     else:
         std_code = ""
 
@@ -107,7 +107,8 @@ def school_details(new_url):
         Phone_no_2 = str(phone_list[1].strip())
         # code for adding STD code as perfix in the telephone no.
 
-        if len(Phone_no_1) > 11 or len(Phone_no_1) < 6:     # removing invalid phone of length greater then 11 and telephone no of length less then 6-digits(without STD code).
+        if len(Phone_no_1) > 11 or len(
+                Phone_no_1) < 6:  # removing invalid phone of length greater then 11 and telephone no of length less then 6-digits(without STD code).
             Phone_no_1 = ""
 
         if len(Phone_no_2) > 11 or len(Phone_no_2) < 6:
@@ -123,6 +124,8 @@ def school_details(new_url):
                     Phone_no_1 = ""
                 elif len(Phone_no_1) > 11:
                     Phone_no_1 = ""
+                elif len(Phone_no_1) != 11: # removing all invalid phone numbers
+                    Phone_no_1 = ""
 
         if len(Phone_no_2) < 10:
             if len(Phone_no_2) < 6:
@@ -133,6 +136,8 @@ def school_details(new_url):
                 if len(Phone_no_2) < 10:
                     Phone_no_2 = ""
                 elif len(Phone_no_2) > 11:
+                    Phone_no_2 = ""
+                elif len(Phone_no_2) != 11: # removing all invalid phone numbers
                     Phone_no_2 = ""
         Phone_no_1 = '\"' + Phone_no_1 + '\"'
         Phone_no_2 = '\"' + Phone_no_2 + '\"'
@@ -149,6 +154,9 @@ def school_details(new_url):
                 Phone_no_1 = Phone_no_1.replace("-", "")
                 if len(Phone_no_1) < 10:
                     Phone_no_1 = ""
+                elif len(Phone_no_1) != 11:
+                    Phone_no_1 = ""
+
         Phone_no_1 = '\"' + Phone_no_1 + '\"'
 
     # removing the phone no. with less then 10 digits
@@ -161,7 +169,7 @@ def school_details(new_url):
     print 'affiliation_no : ' + new_affiliation_no
     print 'Address        : ' + new_postal_address + ',' + new_district + ',' + new_state
     print 'pin            : ' + new_pin_code
-    # print 'STD_Code       : ' + new_std_code
+    print 'STD_Code       : ' + new_std_code
     print 'Phone_no_1     : ' + Phone_no_1
     print 'Phone_no_2     : ' + Phone_no_2
     print 'email_id       : ' + new_email_id
@@ -183,6 +191,8 @@ def school_details(new_url):
     # f.write(Phone_no_1 + "," + Phone_no_2 + "\n")
 
     f.write(
-        new_school_name + "," + new_affiliation_no + "," + new_state + "," + new_district + "," + new_postal_address + "," + new_pin_code + "," + Phone_no_1.replace("-", "").replace("(","").replace(")","") + "," + Phone_no_2.replace("-", "").replace("(","").replace(")","") + "," + new_email_id + "," + new_web_site + "," + new_year_of_foundation + "," + new_date_of_opening + "," + new_name_of_principal + "," + sex + "," + new_status_of_school + "," + new_type_of_affiliation + "," + new_affiliation_period_from + "," + new_affiliation_period_to + "," + new_name_of_trust_society_managing_committee + "\n")
+        new_school_name + "," + new_affiliation_no + "," + new_state + "," + new_district + "," + new_postal_address + "," + new_pin_code + "," + Phone_no_1.replace(
+            "-", "").replace("(", "").replace(")", "") + "," + Phone_no_2.replace("-", "").replace("(", "").replace(")",
+                                                                                                                    "") + "," + new_email_id + "," + new_web_site + "," + new_year_of_foundation + "," + new_date_of_opening + "," + new_name_of_principal + "," + sex + "," + new_status_of_school + "," + new_type_of_affiliation + "," + new_affiliation_period_from + "," + new_affiliation_period_to + "," + new_name_of_trust_society_managing_committee + "\n")
 
     f.close()
