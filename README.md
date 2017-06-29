@@ -2,7 +2,7 @@
 
 This project is a generic API to enrich any input contact details.
 
-If leverages following APIs for Data enrichment:
+It leverages the following APIs for Data enrichment:
 
 1) Google AutoComplete
 2) Google Places
